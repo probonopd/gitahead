@@ -24,6 +24,7 @@ script:
   - cmake ../.. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/bin
   - make -j$(nproc)
   - make DESTDIR=appdir -j$(nproc) install ; find appdir/
+  - rm -rf appdir/usr/bin/qt.conf appdir/usr/bin/Plugins appdir/usr/bin/lib*.so* appdir/usr/bin/include appdir/usr/bin/lib appdir/usr/bin/Resources# FIXME; CMake should leave this to linuxdeployqt
   - mkdir -p appdir/usr/share/icons/hicolor/256x256/apps/ # FIXME in CMake
   - cp ../../rsrc/GitAhead.iconset/icon_256x256.png appdir/usr/share/icons/hicolor/256x256/apps/gitahead.png # FIXME in CMake
   - mv appdir/usr/bin/GitAhead appdir/usr/bin/gitahead # FIXME in CMake
