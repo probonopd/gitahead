@@ -12,16 +12,6 @@ install:
   - source /opt/qt*/bin/qt*-env.sh
 
 script:
-  # cmark
-  # wget -nv https://github.com/commonmark/cmark/archive/0.29.0.tar.gz
-  # tar xf 0.29.0.tar.gz
-  # cd cmark-*/
-  # mkdir build
-  # cd build
-  # cmake ..  -DCMAKE_INSTALL_PREFIX=/usr
-  # make -j$(nproc)
-  # make install
-  # cd ../..
   - git submodule init
   - git submodule update
   - cd dep/openssl/openssl
@@ -31,9 +21,13 @@ script:
   # gitahead
   - mkdir -p build/release
   - cd build/release
-  - cmake ../.. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+  - cmake ../.. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/bin
   - make -j$(nproc)
   - make DESTDIR=appdir -j$(nproc) install ; find appdir/
+  - mkdir -p appdir/usr/share/icons/hicolor/256x256/apps/ # FIXME in CMake
+  - cp ../../rsrc/GitAhead.iconset/icon_256x256.png appdir/usr/share/icons/hicolor/256x256/apps/gitahead.png # FIXME in CMake
+  - mv appdir/usr/bin/GitAhead appdir/usr/bin/gitahead # FIXME in CMake
+  - wget "https://aur.archlinux.org/cgit/aur.git/plain/gitahead.desktop?h=gitahead" -O appdir/usr/share/applications/gitahead.desktop # FIXME in CMake
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
   - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
   - ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage
