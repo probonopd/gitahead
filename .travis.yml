@@ -5,6 +5,7 @@ dist: xenial
 
 before_install:
   - sudo add-apt-repository ppa:beineri/opt-qt-5.10.1-xenial -y
+  - sudo apt-get -q update
   
 install:
   - sudo apt-get -y install qt510base libgl1-mesa-dev libgit2-dev libssh-dev cmake
