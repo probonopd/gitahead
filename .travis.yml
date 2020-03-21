@@ -27,7 +27,7 @@ script:
   - cd dep/openssl/openssl
   - ./config -fPIC
   - make -j$(nproc)
-  - cd ..
+  - cd ../../../
   # gitahead
   - mkdir -p build/release
   - cd build/release
