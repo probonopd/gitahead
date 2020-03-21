@@ -27,6 +27,7 @@ script:
   - mkdir -p appdir/usr/share/icons/hicolor/256x256/apps/ # FIXME in CMake
   - cp ../../rsrc/GitAhead.iconset/icon_256x256.png appdir/usr/share/icons/hicolor/256x256/apps/gitahead.png # FIXME in CMake
   - mv appdir/usr/bin/GitAhead appdir/usr/bin/gitahead # FIXME in CMake
+  - mkdir -p appdir/usr/share/applications # FIXME in CMake
   - wget "https://aur.archlinux.org/cgit/aur.git/plain/gitahead.desktop?h=gitahead" -O appdir/usr/share/applications/gitahead.desktop # FIXME in CMake
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
   - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
