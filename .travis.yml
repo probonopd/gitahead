@@ -7,10 +7,21 @@ before_install:
   - sudo add-apt-repository ppa:beineri/opt-qt-5.10.1-trusty -y
   
 install:
-  - sudo apt-get -y install qt510base libgl1-mesa-dev libgit2-dev cmark libssh-dev
+  - sudo apt-get -y install qt510base libgl1-mesa-dev libgit2-dev libssh-dev cmake
   - source /opt/qt*/bin/qt*-env.sh
 
 script:
+  # cmark
+  - wget -nv https://github.com/commonmark/cmark/archive/0.29.0.tar.gz
+  - tar xf 0.29.0.tar.gz
+  - cd cmark-*/
+  - mkdir build
+  - cd build
+  - cmake ..  -DCMAKE_INSTALL_PREFIX=/usr
+  - make -j$(nproc)
+  - make test
+  - make install
+  - cd ../..
   - git submodule init
   - git submodule update
   - cd dep/openssl/openssl
